@@ -11,14 +11,12 @@
             </div>
             <div class="areaLink">
                 <ul class="listCategory clearFix">
-                    <li><a href="#">Trang chủ</a></li>
-                    <li><a href="#">VITAMIN C TỰ NHIÊN</a></li>
-                    <li><a href="#">Vitamin C</a></li>
-                    <li><a href="#">TIN TỨC</a></li>
-                    <li><a href="#">GÓC MẸ THÔNG THÁI</a></li>
-                    <li><a href="#">Video</a></li>
-                    <li><a href="#">CÂU HỎI THƯỜNG GẶP</a></li>
-                    <li><a href="#">LIÊN HỆ</a></li>
+                    <li><a href="{{url('/')}}">Trang chủ</a></li>
+                    @foreach ($footerCategories as $category)
+                        <li><a href="{{url($category->slug)}}">{{$category->name}}</a></li>
+                    @endforeach
+                    <li><a href="{{url('cau-hoi-thuong-gap')}}">CÂU HỎI THƯỜNG GẶP</a></li>
+                    <li><a href="{{url('lien-he')}}">LIÊN HỆ</a></li>
                 </ul>
             </div>
         </div>

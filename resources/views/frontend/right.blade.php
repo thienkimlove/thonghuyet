@@ -1,32 +1,33 @@
-<div class="contentRight">
-    <div class="boxVideo">
-        <h3 class="globalTitle">
-            <a href="#">Góc Video</a>
-        </h3>
-        @if ($featureVideos->count() > 0)
-            <div class="content">
-                <iframe width="100%" height="250" src="{{$featureVideos->first()->url}}" frameborder="0" allowfullscreen></iframe>
+<div class="col-right">
+    @if ($featureVideos->count() > 0)
+        <div class="box-video">
+            <h3 class="global-title"><a href="{{url('video')}}">Góc videos</a></h3>
+            @if ($firstVideo = $featureVideos->shift())
+                <div class="data">
+                    <iframe width="100%" height="315" src="{{$firstVideo->url}}" frameborder="0" allowfullscreen></iframe>
+                </div>
+            @endif
+            @if ($featureVideos->count() > 0)
                 <ul class="listVideo">
                     @foreach ($featureVideos as $video)
-                        <li><a href="{{url('video/'.$video->slug)}}">{{$video->title}}</a></li>
+                      <li><a href="{{url('video/'.$video->slug)}}">{{$video->title}}</a></li>
                     @endforeach
                 </ul>
-            </div>
-        @endif
-    </div>
-    <div class="boxSale">
-        <h3 class="globalTitle">
-            <a href="#">Cộng đồng mẹ thông thái</a>
-        </h3>
-        <div class="Social">
-            <div class="fb-page" data-href="https://www.facebook.com/tuelinh.vn" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/tuelinh.vn"><a href="https://www.facebook.com/tuelinh.vn">Tuệ Linh</a></blockquote></div></div>
+            @endif
         </div>
-    </div>
-    <!-- /endSale -->
-    <div class="boxHot clearFix sideBar">
-        <h3 class="globalTitle"><a href="#">Tin nổi bật</a></h3>
-        @foreach ($featureNews as $post)
-            <div class="item clearFix">
+    @endif
+    @foreach ($rightBanners as $banner)
+        <div class="box-adv">
+            <a href="{{$banner->url}}">
+                <img src="{{url('files/'.$banner->image)}}" alt="Tue linh">
+            </a>
+        </div>
+    @endforeach
+
+    <div class="boxHot cf">
+        <h3 class="global-title"><a href="{{url('tin-tuc')}}">Tin nổi bật</a></h3>
+        @foreach ($rightNews as $post)
+            <div class="item cf">
                 <a href="{{url($post->slug.'.html')}}" class="thumb">
                     <img src="{{url('img/cache/100x80/'.$post->image)}}" alt="hot" width="100" height="80">
                 </a>
@@ -37,4 +38,7 @@
         @endforeach
     </div>
     <!-- /endHot -->
-</div>
+    <div class="Social">
+        <div class="fb-page" data-href="https://www.facebook.com/tuelinh.vn/?ref=br_rs" data-tabs="timeline" data-height="150px" data-small-header="true" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/tuelinh.vn/?ref=br_rs"><a href="https://www.facebook.com/tuelinh.vn/?ref=br_rs">Tuệ Linh</a></blockquote></div></div>
+    </div>
+</div><!--//col-right-->

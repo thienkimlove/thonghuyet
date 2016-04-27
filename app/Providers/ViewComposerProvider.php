@@ -37,14 +37,31 @@ class ViewComposerProvider extends ServiceProvider
             $headerNotIndexBanners = Banner::where('status', true)->where('position', 'header_no_index')->get();
             
             $view->with('headerCategories',  Category::whereNull('parent_id')->get());
-            $view->with('menuProducts',  Product::all());           
             $view->with('headerNotIndexBanners',  $headerNotIndexBanners);           
             $view->with('headerIndexBanners',  $headerIndexBanners);           
         });
 
-        view()->composer('frontend.right', function ($view) {            
-            $view->with('featureVideos',  Video::latest('updated_at')->limit(3)->get());
-            $view->with('featureNews', Post::publish()->latest('updated_at')->limit(5)->get());
+        view()->composer('frontend.mobile_menu', function ($view) {
+            $headerIndexBanners = Banner::where('status', true)->where('position', 'header_index')->get();
+            $view->with('headerCategories',  Category::whereNull('parent_id')->get());
+            $view->with('headerIndexBanners',  $headerIndexBanners);
+            
+        });
+
+        view()->composer('frontend.footer', function ($view) {
+            $view->with('footerCategories',  Category::whereNull('parent_id')->get());
+        });
+
+        view()->composer('frontend.right_index', function ($view) {            
+            
+            $view->with('featureVideos',  Video::latest('updated_at')->limit(2)->get());           
+        });
+
+        view()->composer('frontend.right', function ($view) {
+
+            $view->with('featureVideos',  Video::latest('updated_at')->limit(4)->get());
+            $view->with('rightNews',  Post::publish()->latest('updated_at')->limit(6)->get());
+            $view->with('rightBanners',  Banner::where('status', true)->where('position', 'right')->get());
         });
     }
 

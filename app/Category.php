@@ -24,6 +24,7 @@ class Category extends Model implements SluggableInterface
         'slug',
         'desc',
         'keywords',
+        'index_display'
     ];
 
     /**
@@ -44,17 +45,21 @@ class Category extends Model implements SluggableInterface
         return $this->hasMany('App\Category', 'parent_id', 'id');
 
     }
-
-    /**
-     * category have many posts.
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function posts()
-    {        
+    
+    public function getListPostsAttribute()
+    {
         if ($this->subCategories->count() == 0) {
-            return $this->hasMany('App\Post')->where('status', true);
+            return Post::where('category_id', $this->id)->where('status', true)->orderBy('updated_at', 'desc')->limit(5)->get();
         } else {
-            return $this->hasMany('App\Post')->whereIn('category_id', $this->subCategories->lists('id')->all())->where('status', true);
-        }          
+            $categoryIds = $this->subCategories->lists('id')->all();
+            $categoryIds[] = $this->id;
+            return Post::whereIn('category_id', $categoryIds)->where('status', true)->orderBy('updated_at', 'desc')->limit(5)->get();
+        }
     }
+    
+    public function posts()
+    {
+        return $this->hasMany(Post::class)->where('status', true)->orderBy('updated_at', 'desc');
+    }
+  
 }

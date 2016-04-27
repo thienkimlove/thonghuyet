@@ -66,13 +66,19 @@ class CategoriesController extends AdminController
     {
         $category = Category::find($id);
 
-        $category->update([
+        $data = [
             'name' => $request->input('name'),
             'desc' => $request->input('desc'),
             'keywords' => $request->input('keywords'),
             'seo_name' => $request->input('seo_name'),
             'parent_id' => ($request->input('parent_id') == 0) ? null : $request->input('parent_id'),
-        ]);
+        ];
+
+        if ($request->input('index_display')) {
+            $data['index_display'] = (int) $request->input('index_display');
+        }
+
+        $category->update($data);
 
         flash('Update category success!', 'success');
         return redirect('admin/categories');

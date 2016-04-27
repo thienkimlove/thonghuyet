@@ -75,4 +75,41 @@ class Post extends Model implements SluggableInterface
     {
         return $this->tags->lists('name')->all();
     }
+
+    public function getRelatedPostsAttribute()
+    {
+        $limit = 5;
+        
+        $post_tag = $this->tags->lists('id');
+
+        $relatedPosts = Post::publish()
+            ->whereHas('tags', function($q) use ($post_tag){
+                $q->whereIn('id', $post_tag);
+            })
+            ->where('id', '!=', $this->id)
+            ->orderBy('updated_at', 'desc')
+            ->limit($limit)
+            ->get();
+
+        $additionPosts = null;
+
+        if ($relatedPosts->count() < $limit) {
+            $categoryLimit = $limit - $relatedPosts->count();
+            $additionPosts = Post::publish()
+                ->where('category_id', $this->category_id)
+                ->where('id', '!=', $this->id)
+                ->orderBy('updated_at', 'desc')
+                ->limit($categoryLimit)
+                ->get();
+        }
+        if ($additionPosts) {
+            foreach ($additionPosts as $post) {
+               if (!in_array($post->id, $relatedPosts->lists('id')->all())) {
+                   $relatedPosts->push($post);
+               }
+            }
+        }
+        
+        return $relatedPosts;
+    }
 }

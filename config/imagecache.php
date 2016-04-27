@@ -83,6 +83,21 @@ return array(
         '274x174' => function($image) {
             return $image->fit(274, 174);
         },
+
+        '310x230' => function($image) {
+            return $image->fit(310, 230);
+        },
+        '300x177' => function($image) {
+            return $image->fit(300, 177);
+        },
+
+        '105x69' => function($image) {
+            return $image->fit(105, 69);
+        },
+
+        '218x128' => function($image) {
+            return $image->fit(218, 128);
+        },
     ),
 
     /*

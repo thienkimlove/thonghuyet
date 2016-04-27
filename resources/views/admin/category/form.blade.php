@@ -42,6 +42,13 @@
                 {!! Form::select('parent_id', $parents, null, ['class' => 'form-control']) !!}
             </div>
 
+            @if ($category->id && !$category->parent_id)
+                    <div class="form-group">
+                        {!! Form::label('index_display', 'Index Display') !!}
+                        {!! Form::text('index_display', null, ['class' => 'form-control']) !!}
+                    </div>
+            @endif
+
             <div class="form-group">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary form-control']) !!}
             </div>

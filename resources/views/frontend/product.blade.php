@@ -1,96 +1,85 @@
 @extends('frontend')
 
 @section('content')
-    <section class="section vis">
-        <div class="container">
-            <div class="contentLeft">
-                <ul class="breadCrumb clearFix">
-                    <li><a href="{{url('/')}}">Trang chủ</a></li>
-                    <li class="active">{{$mainProduct->title}}</li>
-                </ul>
-                <div class="boxProducts">
-                    <ul class="proTabs clearFix">
-                        <li class="tabLink active" data-tab="tabInfo">Thông tin sản phẩm</li>
-                        <li class="tabLink" data-tab="tabChoose">NHẬN BIẾT BAO BÌ</li>
-                        <li class="tabLink" data-tab="tabRate">Hướng dẫn sử dụng</li>
-                    </ul>
-                    <div id="tabInfo" class="tabProduct active">
-                        <div class="item clearFix">
-                            {!! $mainProduct->content_tab1 !!}
-                        </div>
 
-                        <div class="boxTags">
-                            <span>Từ khóa</span>
-                            @foreach ($mainProduct->tags as $tag)
-                              <a href="{{url('tag/'.$tag->slug)}}" title="{{$tag->name}}">{{$tag->name}}</a>
+    <section class="section fix">
+        <div class="layout-home">
+            <ul class="breadcrumbs cf">
+                <li><a href="{{url('/')}}">Trang chủ</a></li>
+                <li>Sản phẩm</li>
+            </ul>
+            <div class="col-left">
+                <div class="box-uses">
+                    <ul class="news-type bgList">
+                        <li class="active">
+                            <a href="javascript:void(0)" rel="nofollow" data-type="tab" data-content="tab-infoproduct" data-parent="news-type" data-reset="news-home" title="Thông tin sản phẩm">
+                                Thông tin sản phẩm</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" rel="nofollow" data-type="tab" data-content="tab-research01" data-parent="news-type" data-reset="news-home" title="Nhận biết bao bì">
+                                Nhận biết bao bì</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" rel="nofollow" data-type="tab" data-content="tab-video" data-parent="news-type" data-reset="news-home" title="Hướng dẫn sử dụng">
+                                Hướng dẫn sử dụng
+                            </a>
+                        </li>
+                    </ul><!--//news-type-->
+                    <div class="news-home" id="tab-infoproduct" style="display: block">
+                        <article class="detail">
+                             {!! $product->content_tab1 !!}
+                        </article>
+                    </div><!--//news-list-->
+                    <div class="news-home" id="tab-research01">
+                        <article class="detail">
+                            {!! $product->content_tab2 !!}
+                        </article>
+                    </div><!--//news-list-->
+                    <div class="news-home" id="tab-video">
+                        <article class="detail">
+                            {!! $product->content_tab3 !!}
+                        </article>
+                    </div><!--//news-list-->
+
+                    <div class="box-adv-center">
+                        <div class="head"><span>Quảng cáo</span></div>
+                        <div class="data">
+                            @foreach ($middleIndexBanner as $banner)
+                                <div class="item full">
+                                    <a href="{{$banner->url}}"><img src="{{url('files/'.$banner->image)}}" alt=""></a>
+                                </div>
                             @endforeach
                         </div>
-                    </div>
-                    <!-- endTab01 -->
-                    <div id="tabChoose" class="tabProduct">
-                        <div class="item clearFix">
-                           {!! $mainProduct->content_tab2 !!}
-                        </div>
-                    </div>
-                    <!-- /endTab02 -->
-                    <div id="tabRate" class="tabProduct">
-                        <div class="item clearFix">
-                            {!! $mainProduct->content_tab3 !!}
-                        </div>
-                    </div>
-                    <!-- /endTab03 -->
-                </div>
+                        <div class="clear"></div>
+                    </div><!--//box-adv-center-->
 
-                <div class="boxLike">
-                    <div class="addthis_native_toolbox"></div>
                 </div>
-
-                <div class="boxOrther">
-                    <h3 class="globalTitle">
-                        <a href="#">Tin liên quan</a>
-                    </h3>
-                    <ul class="listQuestion" id="listQuestion">
-                        @foreach ($related as $post)
-                          <li><a href="{{url($post->slug.'.html')}}">{{$post->title}}</a></li>
-                        @endforeach
-                    </ul>
-                </div>
-
-                <div class="boxComment">
-                    <div class="fb-comments" data-href="{{url('product/'.$mainProduct->slug)}}" data-numposts="5"></div>
-                </div>
-
-                @foreach ($postBanners as $banner)
-                    <div class="boxAdv">
-                        <a href="{{$banner->url}}" title="adv">
-                            <img src="{{url('files/'.$banner->image)}}" alt="ADV">
-                        </a>
+                <div class="box-product">
+                    <div class="title">
+                        <h3 class="global-title"><a href="#">Tin liên quan</a></h3>
                     </div>
-                @endforeach
-                <div class="boxNews">
-                    <h3 class="globalTitle"><a href="#">Tin mới nhất</a></h3>
-                    <div class="listNews clearFix">
-                        @foreach ($latestNews as $post)
-                          <div class="item">
-                            <a href="{{url($post->slug.'.html')}}" class="thumb">
-                                <img src="{{url('img/cache/188x125/'.$post->image)}}" alt="List news">
-                            </a>
-                            <p>
-                               {{$post->desc}}
-                            </p>
-                            <span class="datePost">{{$post->updated_at->format('m/d/Y')}}</span>
-                            <span class="countView">{{$post->views}} lượt xem</span>
+                    <div class="owl-carousel" id="slide-product">
+                        @foreach ($product->related_posts->chunk(2) as $rPost)
+                        <div class="item">
+                            @foreach ($rPost as $post)
+                            <div class="block">
+                                <a href="{{url($post->slug.'.html')}}" title="">
+                                    <img src="{{url('img/cache/218x128/'.$post->image)}}" width="218" height="128" alt=""/>
+                                </a>
+                                <h3>
+                                    <a href="{{url($post->slug.'.html')}}" title="">{{$post->title}}</a>
+                                </h3>
+                            </div>
+                            @endforeach
                         </div>
                         @endforeach
                     </div>
                 </div>
-                <!-- //listButton -->
-                <ul class="listButton clearFix">
-                    <li class="ilocal"><a href="{{url('phan-phoi')}}">Xem điểm bán C Nattu</a></li>
-                    <li class="icall"><a href="{{url('lien-he')}}">1900 6482 - 0912 571 190</a></li>
-                </ul>
-            </div>
+            </div><!--//col-left-->
             @include('frontend.right')
-        </div>
+            <div class="clear"></div>
+        </div><!--//layout-home-->
+        <div class="clear"></div>
     </section>
+
 @endsection

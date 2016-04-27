@@ -1,5 +1,7 @@
 <?php
 
+use App\Setting;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
@@ -16,7 +18,7 @@ class DatabaseSeeder extends Seeder
 
         Model::unguard();
 
-        \App\Setting::truncate();
+        Setting::truncate();
         
         $settings = [
             [
@@ -94,7 +96,14 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        \App\Setting::insert($settings);
+        Setting::insert($settings);
+
+        User::truncate();
+
+        factory(User::class)->create([
+            'password' => bcrypt('232323'),
+            'email' => 'tieumaster@yahoo.com'
+        ]);
 
         Model::reguard();
 

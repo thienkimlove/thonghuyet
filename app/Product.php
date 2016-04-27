@@ -46,4 +46,20 @@ class Product extends Model implements SluggableInterface
         return $this->tags->lists('name')->all();
     }
 
+    public function getRelatedPostsAttribute()
+    {
+        $limit = 5;
+
+        $product_tag = $this->tags->lists('id');
+
+        return Post::publish()
+            ->whereHas('tags', function($q) use ($product_tag){
+                $q->whereIn('id', $product_tag);
+            })
+            ->where('id', '!=', $this->id)
+            ->orderBy('updated_at', 'desc')
+            ->limit($limit)
+            ->get();       
+    }
+
 }

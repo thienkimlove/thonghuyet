@@ -2,53 +2,47 @@
 
 @section('content')
 
-    <section class="section vis">
-        <div class="container">
-            <div class="contentLeft">
-                <ul class="breadCrumb clearFix">
-                    <li><a href="{{url('/')}}">Trang chủ</a></li>
-                    <li class="active">{{$category->name}}</li>
-                </ul>
-                <div class="boxNews clearFix">
-                    <h3 class="globalTitle">
-                        <a href="#">{{$category->name}}</a>
-                    </h3>
-                    <div class="topNews clearFix">
-                        <a href="{{url($featurePost->slug.'.html')}}" class="thumb">
-                            <img src="{{url('img/cache/400x289/'.$featurePost->image)}}" alt="">
+    <section class="section fix">
+        <div class="layout-home">
+            <ul class="breadcrumbs cf">
+                <li><a href="{{url('/')}}">Trang chủ</a></li>
+                <li>{{$category->name}}</li>
+            </ul>
+            <div class="col-left">
+                <div class="box-news">
+                    <div class="title">
+                        <h3 class="global-title">
+                            <a href="{{url($category->slug)}}"><span>{{$category->name}}</span></a>
+                        </h3>
+                    </div>
+                    @foreach ($posts as $post)
+                        <article class="item cf">
+                        <a href="{{url($post->slug.'.html')}}" title="" class="thumbs">
+                            <img src="{{url('img/cache/310x230/'.$post->image)}}" width="310" height="230" alt=""/>
                         </a>
                         <h3>
-                            <a href="{{url($featurePost->slug.'.html')}}">{{$featurePost->title}}</a>
+                            <a href="{{url($post->slug.'.html')}}" title="">{{$post->title}}</a>
                         </h3>
                         <p>
-                            {{$featurePost->desc}}
+                            {{$post->desc}}
                         </p>
-                    </div>
-                    <div class="listNews fullWidth">
-                        @foreach ($posts as $post)
-                          <div class="item clearFix">
-                            <a href="#" class="thumb">
-                                <img src="{{url('img/cache/320x180/'.$post->image)}}" alt="List news" width="320" height="180">
-                            </a>
-                            <h3><a href="{{url($post->slug.'.html')}}">{{$post->title}}</a></h3>
-                            <span class="date">{{$post->updated_at->format('d/m/Y')}}</span> | <span class="tag">{{implode(',', $post->tags->lists('name')->all())}}</span>
-                            <p>
-                              {{$post->desc}}
-                            </p>
-                            <a href="{{url($post->slug.'.html')}}" class="readMore">Chi tiết</a>
-                        </div>
-                        @endforeach
-                        <!-- /paging -->
-                            <div class="boxPaging">
-                                @include('pagination.default', ['paginate' => $posts])
-                                <div class="clear"></div>
-                            </div>
-                    </div>
+                    </article>
+                    @endforeach
+                    <!-- /paging -->
+                    <div class="boxPaging">
+                        @include('pagination.default', ['paginate' => $posts])
+                    </div><!--//news-list-->
                 </div>
-                <!-- /endboxNews -->
-            </div>
+                @foreach ($middleIndexBanner as $banner)
+                    <div class="box-adv-center">
+                        <a href="{{$banner->url}}"><img src="{{url('files/'.$banner->image)}}" alt=""></a>
+                    </div><!--//box-adv-center-->
+                @endforeach
+            </div><!--//col-left-->
             @include('frontend.right')
-        </div>
-    </section>
+            <div class="clear"></div>
+        </div><!--//layout-home-->
+        <div class="clear"></div>
+    </section><!--//section-->
 
 @endsection

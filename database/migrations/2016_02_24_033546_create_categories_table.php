@@ -21,6 +21,7 @@ class CreateCategoriesTable extends Migration {
             $table->text('keywords');
             $table->string('slug', env('CATEGORY_SLUG_URL_LENGTH'))->unique();
             $table->integer('parent_id')->nullable()->index();
+            $table->smallInteger('index_display')->default(0);
             $table->timestamps();
         });
     }
