@@ -239,7 +239,7 @@ class FrontendController extends Controller
 
             $tag = $tag->first();
 
-            $meta_title = ($tag->seo_title) ? $tag->seo_title : $tag->title;
+            $meta_title = ($tag->seo_title) ? $tag->seo_title : $tag->name;
             $meta_desc = $tag->desc;
             $meta_keywords = $tag->keywords;
 

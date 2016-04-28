@@ -26,7 +26,7 @@
                     <div class="box-tags">
                         <span>TAG</span>
                         @foreach ($post->tags as $tag)
-                          <a href="{{url('tag/'.$tag->slug)}}" title="">{{$tag->title}}</a>
+                          <a href="{{url('tag/'.$tag->slug)}}" title="">{{$tag->name}}</a>
                         @endforeach
                     </div><!--//box-tags-->
                     <div class="released-post">
