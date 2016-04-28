@@ -20,9 +20,7 @@
                              {!! $post->content !!}
                         </div>
                     </article>
-                    <div class="social-follow">
-                        <div class="fb-share-button" data-href="{{url($post->slug.'.html')}}" data-layout="button_count" data-mobile-iframe="true"></div>
-                    </div>
+                   
                     <div class="box-tags">
                         <span>TAG</span>
                         @foreach ($post->tags as $tag)
