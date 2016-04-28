@@ -29,6 +29,11 @@
                           <a href="{{url('tag/'.$tag->slug)}}" title="">{{$tag->name}}</a>
                         @endforeach
                     </div><!--//box-tags-->
+
+                    <div class="boxLike">
+                        <div class="addthis_native_toolbox"></div>
+                    </div>
+
                     <div class="released-post">
                         <div class="title">
                             <h3 class="global-title"><a href="#">Tin liên quan</a></h3>
@@ -39,6 +44,7 @@
                             @endforeach
                         </ul>
                     </div>
+
                     <div class="comment-post">
                         <div class="fb-comments" data-href="{{url($post->slug.'.html')}}" data-numposts="5"></div>
                     </div>
