@@ -7,10 +7,10 @@
                 </a>
             </h1>
             <div class="box-find" id="box-find">
-                <form>
-                    <input type="text" placeholder="Từ khóa tìm kiếm" name="keyword" class="txt"/>
+                {!! Form::open(array('url' => 'search', 'method' => 'get')) !!}
+                    <input type="text" placeholder="Từ khóa tìm kiếm" name="q" class="txt"/>
                     <input type="submit" value="" name="submit" class="btn-find"/>
-                </form>
+                {!! Form::close() !!}
             </div>
             <ul class="nav-social">
                 <li><a href=""><img src="{{url('frontend/images/i_fb.png')}}" alt=""></a></li>

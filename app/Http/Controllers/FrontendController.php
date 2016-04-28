@@ -255,15 +255,20 @@ class FrontendController extends Controller
                 'desc' => $meta_desc,
                 'keywords' => $meta_keywords,
             ], $value));
-        } else {
-            $keyword = $value;
+        }
+    } 
+    
+    public function search(Request $request) 
+    {
+        if ($request->input('q')) {
+            $keyword = $request->input('q');
             $posts = Post::publish()->where('title', 'LIKE', '%' . $keyword . '%')->paginate(10);
 
             return view('frontend.search', compact('posts', 'keyword'))->with($this->generateMeta('tag', [
                 'title' => 'Tìm kiếm cho từ khóa ' . $keyword,
                 'desc' => 'Tìm kiếm cho từ khóa ' . $keyword,
                 'keywords' => $keyword,
-            ], $value));
+            ], $keyword));
         }
     }
 

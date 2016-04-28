@@ -20,7 +20,7 @@
                              {!! $post->content !!}
                         </div>
                     </article>
-                   
+
                     <div class="box-tags">
                         <span>TAG</span>
                         @foreach ($post->tags as $tag)
