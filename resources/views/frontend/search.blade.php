@@ -12,7 +12,7 @@
                 <div class="box-news">
                     <div class="title">
                         <h3 class="global-title">
-                            <span>{{$keyword}}</span>
+                            <a href="#"><span>{{$keyword}}</span></a>
                         </h3>
                     </div>
                     @foreach ($posts as $post)
