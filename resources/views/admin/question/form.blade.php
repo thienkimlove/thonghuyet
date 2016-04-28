@@ -37,10 +37,7 @@
               </div>
 
 
-              <div class="form-group">
-              {!! Form::label('ask_person', 'Nguoi dat cau hoi') !!}
-              {!! Form::text('ask_person', null, ['class' => 'form-control']) !!}
-          </div>
+
 
           <div class="form-group">
               {!! Form::label('question', 'Câu hỏi') !!}
