@@ -233,6 +233,8 @@ class FrontendController extends Controller
 
     public function tag($value)
     {
+        $middleIndexBanner = Banner::where('status', true)->where('position', 'middle_index')->get();
+
         $tag = Tag::where('slug', $value)->get();
 
         if ($tag->count() > 0) {
@@ -250,7 +252,7 @@ class FrontendController extends Controller
                 ->orderBy('updated_at', 'desc')
                 ->paginate(10);
 
-            return view('frontend.tag', compact('posts', 'tag'))->with($this->generateMeta([
+            return view('frontend.tag', compact('posts', 'tag', 'middleIndexBanner'))->with($this->generateMeta([
                 'title' => $meta_title,
                 'desc' => $meta_desc,
                 'keywords' => $meta_keywords,
@@ -261,10 +263,11 @@ class FrontendController extends Controller
     public function search(Request $request) 
     {
         if ($request->input('q')) {
+            $middleIndexBanner = Banner::where('status', true)->where('position', 'middle_index')->get();
             $keyword = $request->input('q');
             $posts = Post::publish()->where('title', 'LIKE', '%' . $keyword . '%')->paginate(10);
 
-            return view('frontend.search', compact('posts', 'keyword'))->with($this->generateMeta('tag', [
+            return view('frontend.search', compact('posts', 'keyword', 'middleIndexBanner'))->with($this->generateMeta('tag', [
                 'title' => 'Tìm kiếm cho từ khóa ' . $keyword,
                 'desc' => 'Tìm kiếm cho từ khóa ' . $keyword,
                 'keywords' => $keyword,
