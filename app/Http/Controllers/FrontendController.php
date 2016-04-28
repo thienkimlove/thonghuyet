@@ -221,8 +221,11 @@ class FrontendController extends Controller
 
     public function saveQuestion(Request $request)
     {
-        if ($request->input('question')) {
-            Question::create($request->all());
+        $data = $request->all();
+
+        if (isset($data['question'])) {
+            unset($data['_token']);
+            Question::insert($data);
         }
 
         return redirect('cau-hoi-thuong-gap');

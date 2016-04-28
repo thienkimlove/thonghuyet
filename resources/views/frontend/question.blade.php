@@ -16,9 +16,9 @@
                                 <h3 class="title-faq">
                                    {{$mainQuestion->title}}
                                 </h3>
-                    <span class="human">Người gửi:
-                      <span>{{$mainQuestion->ask_person}}</span>
-                    </span>
+                                <span class="human">Người gửi:
+                                  <span>{{$mainQuestion->ask_person}}</span>
+                                </span>
                                 <time class="time" datetime="{{$mainQuestion->updated_at->format('Y/m/d')}}">{{$mainQuestion->updated_at->format('d/m/Y')}}</time>
                                 <p>
                                     <span class="question">Câu hỏi:</span>
