@@ -182,7 +182,7 @@
                             @foreach ($thirdIndexCategory->list_posts->splice(0, 6) as $post)
                                <div class="item">
                                 <a href="{{url($post->slug.'.html')}}" class="thumb">
-                                    <img src="{{url('img/cache/130x80/'.$post->image)}}" alt="{{$post->title}}">
+                                    <img src="{{url('img/cache/188x125/'.$post->image)}}" alt="{{$post->title}}">
                                 </a>
                                 <h3><a href="{{url($post->slug.'.html')}}">{{$post->title}}</a></h3>
                             </div>
