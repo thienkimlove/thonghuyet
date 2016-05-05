@@ -14,8 +14,8 @@
                         <h3 class="global-title">
                             <a>{{$post->category->name}}</a>
                         </h3>
+                        <h3>{{$post->title}}</h3>
                     </div>
-                    <h3>{{$post->title}}</h3>
                     <article class="detail">
                         <div class="content">
                              {!! $post->content !!}
