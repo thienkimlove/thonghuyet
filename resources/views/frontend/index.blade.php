@@ -112,17 +112,30 @@
                 <div class="news-list cf" id="tab-demo" style="display: block">
                     <div class="box-news cf">
                         @foreach ($secondIndexCategory->list_posts->splice(0, 4) as $index => $post)
-                            <div class="{{$index == 0 ? 'item01' : 'item02'}}">
-                            <a href="{{url($post->slug.'.html')}}" class="thumbs">
-                                <img src="{{url('img/cache/300x177/'.$post->image)}}" alt="">
-                            </a>
-                            <h3>
-                                <a href="{{url($post->slug.'.html')}}">{{$post->title}}</a>
-                            </h3>
-                            <p>
-                                {{$post->desc}}
-                            </p>
-                        </div>
+                            @if ($index == 0)
+                                <div class="item01">
+                                    <a href="{{url($post->slug.'.html')}}" class="thumbs">
+                                        <img src="{{url('img/cache/300x177/'.$post->image)}}" alt="">
+                                    </a>
+                                    <h3>
+                                        <a href="{{url($post->slug.'.html')}}">{{$post->title}}</a>
+                                    </h3>
+                                    <p>
+                                        {{$post->desc}}
+                                    </p>
+                                </div>
+                            @else
+                                <div class="item02">
+                                    <a href="{{url($post->slug.'.html')}}" class="thumbs">
+                                        <img src="{{url('img/cache/110x70/'.$post->image)}}" alt="">
+                                    </a>
+                                    <h3>
+                                        <a href="{{url($post->slug.'.html')}}">{{$post->title}}</a>
+                                    </h3>
+                                </div>
+                            @endif
+
+
                         @endforeach
                     </div>
                 </div><!--//news-list-->
