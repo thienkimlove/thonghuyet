@@ -23,10 +23,8 @@
     </div>
     <div class="copyRight">
         <div class="container">
-            <p class="copy">MỌI THÔNG TIN ĐỀU BẢN QUYỀN ĐỀU THUỘC VỀ CÔNG TY TNHH TUỆ LINH</p>
-            <p class="address">
-                Tầng 5, Tòa nhà 29 T1 - Hoàng Đạo Thúy - Trung Hòa - Cầu Giấy - Hà Nội- Điện thoại: (04) 62824344 - Fax: 04.62824263
-            </p>
-        </div>
+            <p class="copy">Giúp Giúp hoạt huyết, thông kinh<br />
+            © 2016 Thông Huyết Tuệ Linh. Vui lòng ghi rõ nguồn khi sử dụng nội dung từ website này.</p>
+      </div>
     </div>
 </footer>
