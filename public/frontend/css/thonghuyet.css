@@ -1,12 +1,4 @@
-@charset "UTF-8";
-/*
-Theme Name: Theme name
-Theme URI: Theme URI
-Author: Team Codeshore
-Author URI: http://codeshore.com/
-Description: Description theme
-Version:  1.4
-*/
+﻿@charset "UTF-8";
 /*@font-face {
   font-family: "Open Sans";
   src: url("../font/open-sans.eot?") format("eot"),
@@ -1855,6 +1847,12 @@ img {
 .title .global-title {
   display: inline-block;
 }
+.title .sub-title {
+  font-size: 18px;
+  padding: 15px 0;
+  text-transform: uppercase;
+  color: #b22420;
+}
 
 .title01 {
   float: left;
@@ -2831,7 +2829,7 @@ img {
   background: url(../images/sprite.png) no-repeat -208px -96px;
 }
 
-/*Sản phẩm*/
+/*Sáº£n pháº©m*/
 .layout-product .col-left {
   width: 23.40426%;
 }
