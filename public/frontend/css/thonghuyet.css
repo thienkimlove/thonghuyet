@@ -3378,7 +3378,12 @@ img {
   .title-panel .title {
     float: none;
   }
-
+  .footer .listSocial li {
+    margin-right: 0;
+  }
+  .footer .boxFooter .areaLink {
+    display: none;
+  }
   .global-title.fll {
     float: none;
   }
