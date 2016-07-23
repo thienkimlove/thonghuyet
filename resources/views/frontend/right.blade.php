@@ -1,4 +1,4 @@
-<div class="col-right">
+﻿<div class="col-right">
     @if ($featureVideos->count() > 0)
         <div class="box-video">
             <h3 class="global-title"><a href="{{url('video')}}">Góc videos</a></h3>
@@ -24,7 +24,7 @@
         </div>
     @endforeach
 
-    <div class="boxHot cf">
+    <div class="boxHot cf" id="sidebar">
         <h3 class="global-title"><a href="{{url('tin-tuc')}}">Tin nổi bật</a></h3>
         @foreach ($rightNews as $post)
             <div class="item cf">
@@ -39,6 +39,6 @@
     </div>
     <!-- /endHot -->
     <div class="Social">
-        <div class="fb-page" data-href="https://www.facebook.com/tuelinh.vn/?ref=br_rs" data-tabs="timeline" data-height="150px" data-small-header="true" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/tuelinh.vn/?ref=br_rs"><a href="https://www.facebook.com/tuelinh.vn/?ref=br_rs">Tuệ Linh</a></blockquote></div></div>
+        <div class="fb-page" data-href="https://www.facebook.com/tuelinh.vn" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/tuelinh.vn" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/tuelinh.vn">Tuệ Linh</a></blockquote></div>
     </div>
 </div><!--//col-right-->

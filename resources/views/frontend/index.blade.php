@@ -32,7 +32,7 @@
                     <div class="news-home cf" id="tab-index" style="display:block;">
                         @foreach ($topIndexCategory->list_posts->splice(0, 3) as $post)
                         <article class="item">
-                            <a href="" title="" class="thumbs">
+                            <a href="{{url($post->slug.'.html')}}" title="" class="thumbs">
                                 <img src="{{url('img/cache/310x230/'.$post->image)}}" width="310" height="230" alt=""/>
                             </a>
                             <h3>

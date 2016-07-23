@@ -207,6 +207,12 @@ img {
   border: 1px solid #fff;
   margin: 5px 1px 0 0;
 }
+
+#sidebar.fixed {
+  position: fixed;
+  width: 300px;
+  top: 20px;
+}
 .header-top .btn-login:hover {
   color: #cf7c68;
   border: 1px solid #ffa300;

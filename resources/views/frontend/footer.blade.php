@@ -1,4 +1,4 @@
-<footer class="footer">
+﻿<footer class="footer" id="footer">
     <div class="container">
         <div class="boxFooter clearFix">
             <div class="areaSocial">
